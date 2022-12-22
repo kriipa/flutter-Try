@@ -13,7 +13,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       title: 'flutter class',
       theme: getApplicationTheme(),
-      initialRoute: '/LoginPageScreen',
+      initialRoute: '/RegisterScreen',
       routes: {
         '/SplashScreen': (context) => const SplashScreen(),
         '/RegisterScreen': (context) => const RegisterScreen(),

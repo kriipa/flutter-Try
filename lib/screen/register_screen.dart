@@ -71,6 +71,13 @@ class RegisterScreen extends StatelessWidget {
                   child: const Text('Register'),
                 ),
               ),
+              gap,
+              const Text("Already have an account? SIGN IN"),
+
+              gap,
+
+              IconButton(onPressed: () {}, icon: const Icon(Icons.facebook)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.mail)),
             ],
           ),
         ),
