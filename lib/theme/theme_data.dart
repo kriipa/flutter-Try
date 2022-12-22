@@ -16,9 +16,9 @@ ThemeData getApplicationTheme() {
       ),
     ),
         // primarySwatch: Colors.orangeAccent,
-        primarySwatch:Colors.brown,
+    primarySwatch:Colors.brown,
         // scaffoldBackgroundColor: const Color.fromARGB(255, 217, 230, 218),
-        fontFamily: 'Montserrat Light',
+    fontFamily: 'Montserrat Light',
         
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(

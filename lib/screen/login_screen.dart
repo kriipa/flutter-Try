@@ -22,13 +22,13 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                
                 _gap,
                 Image.network(
                   'https://i.pinimg.com/564x/3d/23/93/3d23937b872f3446a03730c58f1f68f9.jpg',
                   height: 500,
                 ),
                 _gap,
+                const Text('Login'),
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
@@ -64,6 +64,9 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {},
+                    style: const ButtonStyle(
+                        // backgroundColor: Colors.amber,
+                        ),
                     child: const Text(
                       'Login',
                       style:
@@ -74,18 +77,25 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height: 50,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Register',
-                      style:
-                          TextStyle(fontFamily: 'OpenSans-Light', fontSize: 20),
-                    ),
-                  ),
+                // SizedBox(
+                //   height: 50,
+                //   width: double.infinity,
+                //   child: ElevatedButton(
+                //     onPressed: () {},
+                //     child: const Text(
+                //       'Register',
+                //       style:
+                //           TextStyle(fontFamily: 'OpenSans-Light', fontSize: 20),
+                //     ),
+                //   ),
+                // ),
+                const SizedBox(
+                  height: 10,
                 ),
+                const Text("Don't have an account? SIGN UP"),
+
+                IconButton(onPressed: () {}, icon: const Icon(Icons.facebook)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.mail)),
               ],
             ),
           ),

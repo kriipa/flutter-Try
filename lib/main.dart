@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:furniturezoid/theme/theme_data.dart';
 
 // import 'screen/login_screen.dart';
-import 'screen/logintry.dart';
+import 'screen/login_screen.dart';
 import 'screen/register_screen.dart';
 import 'screen/splash_screen.dart';
 
