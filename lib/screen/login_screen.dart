@@ -18,7 +18,7 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -28,17 +28,27 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                   height: 500,
                 ),
                 _gap,
-                const Text('Login'),
+                const Text('Login', 
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
                 TextFormField(
                   decoration: const InputDecoration(
+                    fillColor: Colors.grey,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(6),
                       ),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blueGrey),
-                    ),
+                    // enabledBorder: OutlineInputBorder(
+                    //   borderSide: BorderSide(color: Colors.blueGrey),
+                    // ),
                   ),
                 ),
                 const SizedBox(
@@ -46,6 +56,8 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
+                    hintText: 'Password',
+
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(6),
@@ -93,9 +105,14 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                   height: 10,
                 ),
                 const Text("Don't have an account? SIGN UP"),
-
-                IconButton(onPressed: () {}, icon: const Icon(Icons.facebook)),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.mail)),
+                
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.facebook)),
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.mail)),
+                    ],
+                  ),
               ],
             ),
           ),
