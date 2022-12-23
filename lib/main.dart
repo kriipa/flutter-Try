@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:furniturezoid/theme/theme_data.dart';
 
 // import 'screen/login_screen.dart';
+import 'screen/dashboard.dart';
 import 'screen/login_screen.dart';
 import 'screen/register_screen.dart';
 import 'screen/splash_screen.dart';
@@ -13,11 +14,14 @@ void main() {
       debugShowCheckedModeBanner: false,
       title: 'flutter class',
       theme: getApplicationTheme(),
-      initialRoute: '/RegisterScreen',
+      initialRoute: '/DashboardScreen',
       routes: {
         '/SplashScreen': (context) => const SplashScreen(),
         '/RegisterScreen': (context) => const RegisterScreen(),
         '/LoginPageScreen': (context) => const LoginPageScreen(),
+        '/DashboardScreen': (context) => DashboardScreen(),
+
+
       },
     ),
   );

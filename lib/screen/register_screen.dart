@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/src/widgets/container.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+
+  const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final _globalKey = GlobalKey<FormState>();
+
   final gap = const SizedBox(
     height: 16,
   );
-  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,51 +31,80 @@ class RegisterScreen extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
+              
               children: [
                 gap,
                 TextFormField(
                   decoration: const InputDecoration(
-                    hintText: 'First Name',
+                    hintText: 'User Name',
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           width: 1, color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                   ),
+                  keyboardType: TextInputType.name,
+                    validator: (value) {
+                      if (value == null || value.isEmpty){
+                        return 'Fields cannot be empty';
+                      }
+                      return null;
+                    },
                 ),
                 gap,
                 TextFormField(
                   decoration: const InputDecoration(
-                    hintText: 'Last Name',
+                    hintText: 'Email Address',
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           width: 1, color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                   ),
+                  keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value == null || value.isEmpty){
+                        return 'Fields cannot be empty';
+                      }
+                      return null;
+                    },
                 ),
                 gap,
                 TextFormField(
                   decoration: const InputDecoration(
-                    hintText: 'Select Batch',
+                    hintText: 'Phone number',
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           width: 1, color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                   ),
+                  keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty){
+                        return 'Fields cannot be empty';
+                      }
+                      return null;
+                    },
                 ),
 
                 gap,
                 TextFormField(
                   decoration: const InputDecoration(
-                    hintText: 'Username',
+                    hintText: 'Address',
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           width: 1, color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                   ),
+                  keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty){
+                        return 'Fields cannot be empty';
+                      }
+                      return null;
+                    },
                 ),
                 gap,
                 TextFormField(
@@ -78,6 +116,13 @@ class RegisterScreen extends StatelessWidget {
                           width: 1, color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                   ),
+                  keyboardType: TextInputType.visiblePassword,
+                    validator: (value) {
+                      if (value == null || value.isEmpty){
+                        return 'Fields cannot be empty';
+                      }
+                      return null;
+                    },
                 ),
                 gap,
                 //buttons
@@ -85,7 +130,13 @@ class RegisterScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if(_globalKey.currentState!.validate()){
+                        setState(() {
+                          Navigator.pushNamed(context, '/LoginPageScreen');
+                        });
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
@@ -94,19 +145,17 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
                 gap,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: RichText(
-                    text: const TextSpan(
-                        text: "Already have an account? ",
-                        style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 16),
-                        children: [
-                          TextSpan(
-                            text: "Login",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ]),
-                  ),
+                
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:  [
+                    const Text("Already have an account?"),
+                    TextButton(onPressed: (){
+                      Navigator.pushNamed(context, '/LoginPageScreen');
+                    }, 
+                    child: const Text('Sign in',
+                    style: TextStyle(color: Colors.blue)))
+                  ],
                 ),
 
                 gap,
@@ -117,12 +166,12 @@ class RegisterScreen extends StatelessWidget {
                     IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.facebook,
-                          color: Colors.blue, size: 30),
+                          color: Color.fromARGB(255, 255, 255, 255), size: 30),
                     ),
                     IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.mail,
-                            color: Colors.blue, size: 30)),
+                            color: Color.fromARGB(255, 255, 255, 255), size: 30)),
                   ],
                 ),
               ],

@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
     void initState() {
       Future.delayed(const Duration(seconds: 2), () {
-        Navigator.pushReplacementNamed(context, '/LoginScreen');
+        Navigator.pushReplacementNamed(context, '/LoginPageScreen');
       });
       super.initState();
     }
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
             style: TextStyle(
               color: Colors.black87,
               fontSize: 18),
-          )
+          ),
         ],
       ),
     );

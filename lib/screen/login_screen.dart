@@ -40,15 +40,16 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
+                    hintText: 'Username',
                     fillColor: Colors.grey,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(6),
                       ),
                     ),
-                    // enabledBorder: OutlineInputBorder(
-                    //   borderSide: BorderSide(color: Colors.blueGrey),
-                    // ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -64,7 +65,7 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blueGrey),
+                      borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                   ),
                 ),
@@ -89,28 +90,27 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                // SizedBox(
-                //   height: 50,
-                //   width: double.infinity,
-                //   child: ElevatedButton(
-                //     onPressed: () {},
-                //     child: const Text(
-                //       'Register',
-                //       style:
-                //           TextStyle(fontFamily: 'OpenSans-Light', fontSize: 20),
-                //     ),
-                //   ),
-                // ),
+                
                 const SizedBox(
                   height: 10,
                 ),
-                const Text("Don't have an account? SIGN UP"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:  [
+                    const Text("Don't have an account?"),
+                    TextButton(onPressed: (){
+                      Navigator.pushNamed(context, '/RegisterScreen');
+                    }, 
+                    child: const Text('Sign up',
+                    style: TextStyle(color: Colors.blue)))
+                  ],
+                ),
                 
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.facebook)),
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.mail)),
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.facebook,color: Color.fromARGB(255, 255, 255, 255), size: 30)),
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.mail,color: Color.fromARGB(255, 255, 255, 255), size: 30)),
                     ],
                   ),
               ],
