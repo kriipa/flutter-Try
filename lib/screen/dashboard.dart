@@ -9,13 +9,14 @@ import 'bottom_screen/settings.dart';
 
 class DashboardScreen extends StatefulWidget {
 
-  DashboardScreen({super.key});
+  const DashboardScreen({super.key});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  String searchValue = '';
   int _selectedIndex = 0;
 
   List<Widget> lstBottonScreen = [
@@ -27,14 +28,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // appBar : AppBar(
-    //   title: const('Dashboard'),
-    // );
+    AppBar(
+      title: const Text('Homepage'),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.search),
+        ),
+      ],
+    );
     return Scaffold(
       body: lstBottonScreen[_selectedIndex],
       
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromARGB(255, 119, 98, 90),
+        backgroundColor: const Color.fromARGB(255, 119, 98, 90),
         selectedItemColor: Colors.amber,
         unselectedItemColor: Colors.white,
         type: BottomNavigationBarType.fixed,

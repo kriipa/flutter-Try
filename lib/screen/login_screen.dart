@@ -22,7 +22,6 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _gap,
                 Image.network(
                   'https://i.pinimg.com/564x/3d/23/93/3d23937b872f3446a03730c58f1f68f9.jpg',
                   height: 500,
@@ -48,7 +47,7 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                      borderSide: BorderSide(color: Color.fromARGB(255, 94, 70, 70)),
                     ),
                   ),
                 ),
@@ -58,14 +57,14 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                 TextFormField(
                   decoration: const InputDecoration(
                     hintText: 'Password',
-
+        
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(6),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                      borderSide: BorderSide(color: Color.fromARGB(255, 102, 82, 82)),
                     ),
                   ),
                 ),
@@ -109,8 +108,8 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.facebook,color: Color.fromARGB(255, 255, 255, 255), size: 30)),
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.mail,color: Color.fromARGB(255, 255, 255, 255), size: 30)),
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.facebook,color: Color.fromARGB(255, 0, 0, 0), size: 30)),
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.mail,color: Color.fromARGB(255, 0, 0, 0), size: 30)),
                     ],
                   ),
               ],
