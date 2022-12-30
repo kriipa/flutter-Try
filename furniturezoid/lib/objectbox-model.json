@@ -1,0 +1,79 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2410140681378478507",
+      "lastPropertyId": "2:3225546169146772290",
+      "name": "Furniture",
+      "properties": [
+        {
+          "id": "1:8723461095622801467",
+          "name": "furnitureId",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:3225546169146772290",
+          "name": "furnitureName",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:5233467599889001790",
+      "lastPropertyId": "6:3306817962661783596",
+      "name": "User",
+      "properties": [
+        {
+          "id": "1:8817934581500562368",
+          "name": "uId",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:8710184331649608848",
+          "name": "fname",
+          "type": 9
+        },
+        {
+          "id": "3:4772085414845698629",
+          "name": "lname",
+          "type": 9
+        },
+        {
+          "id": "4:6615984480682981558",
+          "name": "username",
+          "type": 9
+        },
+        {
+          "id": "5:563737209014400748",
+          "name": "password",
+          "type": 9
+        },
+        {
+          "id": "6:3306817962661783596",
+          "name": "furnitureId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:1665688941593125112",
+          "relationTarget": "Furniture"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:5233467599889001790",
+  "lastIndexId": "1:1665688941593125112",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
