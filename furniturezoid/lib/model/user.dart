@@ -1,6 +1,7 @@
-import 'package:furniturezoid/model/furniture.dart';
+// import 'package:furniturezoid/model/furniture.dart';
 import 'package:objectbox/objectbox.dart';
 
+// flutter pub run build_runner build  --delete-conflicting-outputs
 
 @Entity()
 class User {
@@ -14,7 +15,7 @@ class User {
   // String address;
   String password;
 
-  final furniture = ToOne<Furniture>();
+  // final furniture = ToOne<Furniture>();
 
   User(this.fname, this.lname, this.username, this.password, {this.uId = 0});
 }

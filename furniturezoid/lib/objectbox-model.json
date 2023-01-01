@@ -4,69 +4,42 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:2410140681378478507",
-      "lastPropertyId": "2:3225546169146772290",
-      "name": "Furniture",
-      "properties": [
-        {
-          "id": "1:8723461095622801467",
-          "name": "furnitureId",
-          "type": 6,
-          "flags": 129
-        },
-        {
-          "id": "2:3225546169146772290",
-          "name": "furnitureName",
-          "type": 9
-        }
-      ],
-      "relations": []
-    },
-    {
-      "id": "2:5233467599889001790",
-      "lastPropertyId": "6:3306817962661783596",
+      "id": "1:8760265302201636791",
+      "lastPropertyId": "5:3687001264436156113",
       "name": "User",
       "properties": [
         {
-          "id": "1:8817934581500562368",
+          "id": "1:9171048352918318032",
           "name": "uId",
           "type": 6,
           "flags": 129
         },
         {
-          "id": "2:8710184331649608848",
+          "id": "2:6376354555793352167",
           "name": "fname",
           "type": 9
         },
         {
-          "id": "3:4772085414845698629",
+          "id": "3:8926830817780086912",
           "name": "lname",
           "type": 9
         },
         {
-          "id": "4:6615984480682981558",
+          "id": "4:5115192566207058230",
           "name": "username",
           "type": 9
         },
         {
-          "id": "5:563737209014400748",
+          "id": "5:3687001264436156113",
           "name": "password",
           "type": 9
-        },
-        {
-          "id": "6:3306817962661783596",
-          "name": "furnitureId",
-          "type": 11,
-          "flags": 520,
-          "indexId": "1:1665688941593125112",
-          "relationTarget": "Furniture"
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "2:5233467599889001790",
-  "lastIndexId": "1:1665688941593125112",
+  "lastEntityId": "1:8760265302201636791",
+  "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,

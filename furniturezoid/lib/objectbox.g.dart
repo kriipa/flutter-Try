@@ -9,76 +9,48 @@
 
 import 'dart:typed_data';
 
+// ignore: depend_on_referenced_packages
 import 'package:flat_buffers/flat_buffers.dart' as fb;
 import 'package:objectbox/internal.dart'; // generated code can access "internal" functionality
 import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'model/furniture.dart';
 import 'model/user.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 2410140681378478507),
-      name: 'Furniture',
-      lastPropertyId: const IdUid(2, 3225546169146772290),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 8723461095622801467),
-            name: 'furnitureId',
-            type: 6,
-            flags: 129),
-        ModelProperty(
-            id: const IdUid(2, 3225546169146772290),
-            name: 'furnitureName',
-            type: 9,
-            flags: 0)
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[
-        ModelBacklink(name: 'user', srcEntity: 'User', srcField: '')
-      ]),
-  ModelEntity(
-      id: const IdUid(2, 5233467599889001790),
+      id: const IdUid(1, 8760265302201636791),
       name: 'User',
-      lastPropertyId: const IdUid(6, 3306817962661783596),
+      lastPropertyId: const IdUid(5, 3687001264436156113),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 8817934581500562368),
+            id: const IdUid(1, 9171048352918318032),
             name: 'uId',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 8710184331649608848),
+            id: const IdUid(2, 6376354555793352167),
             name: 'fname',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 4772085414845698629),
+            id: const IdUid(3, 8926830817780086912),
             name: 'lname',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 6615984480682981558),
+            id: const IdUid(4, 5115192566207058230),
             name: 'username',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 563737209014400748),
+            id: const IdUid(5, 3687001264436156113),
             name: 'password',
             type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(6, 3306817962661783596),
-            name: 'furnitureId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(1, 1665688941593125112),
-            relationTarget: 'Furniture')
+            flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
@@ -104,8 +76,8 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(2, 5233467599889001790),
-      lastIndexId: const IdUid(1, 1665688941593125112),
+      lastEntityId: const IdUid(1, 8760265302201636791),
+      lastIndexId: const IdUid(0, 0),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
@@ -117,45 +89,9 @@ ModelDefinition getObjectBoxModel() {
       version: 1);
 
   final bindings = <Type, EntityDefinition>{
-    Furniture: EntityDefinition<Furniture>(
-        model: _entities[0],
-        toOneRelations: (Furniture object) => [],
-        toManyRelations: (Furniture object) => {
-              RelInfo<User>.toOneBacklink(6, object.furnitureId,
-                  (User srcObject) => srcObject.furniture): object.user
-            },
-        getId: (Furniture object) => object.furnitureId,
-        setId: (Furniture object, int id) {
-          object.furnitureId = id;
-        },
-        objectToFB: (Furniture object, fb.Builder fbb) {
-          final furnitureNameOffset = fbb.writeString(object.furnitureName);
-          fbb.startTable(3);
-          fbb.addInt64(0, object.furnitureId);
-          fbb.addOffset(1, furnitureNameOffset);
-          fbb.finish(fbb.endTable());
-          return object.furnitureId;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = Furniture(
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 6, ''),
-              furnitureId:
-                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
-          InternalToManyAccess.setRelInfo(
-              object.user,
-              store,
-              RelInfo<User>.toOneBacklink(6, object.furnitureId,
-                  (User srcObject) => srcObject.furniture),
-              store.box<Furniture>());
-          return object;
-        }),
     User: EntityDefinition<User>(
-        model: _entities[1],
-        toOneRelations: (User object) => [object.furniture],
+        model: _entities[0],
+        toOneRelations: (User object) => [],
         toManyRelations: (User object) => {},
         getId: (User object) => object.uId,
         setId: (User object, int id) {
@@ -166,13 +102,12 @@ ModelDefinition getObjectBoxModel() {
           final lnameOffset = fbb.writeString(object.lname);
           final usernameOffset = fbb.writeString(object.username);
           final passwordOffset = fbb.writeString(object.password);
-          fbb.startTable(7);
+          fbb.startTable(6);
           fbb.addInt64(0, object.uId);
           fbb.addOffset(1, fnameOffset);
           fbb.addOffset(2, lnameOffset);
           fbb.addOffset(3, usernameOffset);
           fbb.addOffset(4, passwordOffset);
-          fbb.addInt64(5, object.furniture.targetId);
           fbb.finish(fbb.endTable());
           return object.uId;
         },
@@ -190,9 +125,7 @@ ModelDefinition getObjectBoxModel() {
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 12, ''),
               uId: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
-          object.furniture.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
-          object.furniture.attach(store);
+
           return object;
         })
   };
@@ -200,35 +133,20 @@ ModelDefinition getObjectBoxModel() {
   return ModelDefinition(model, bindings);
 }
 
-/// [Furniture] entity fields to define ObjectBox queries.
-class Furniture_ {
-  /// see [Furniture.furnitureId]
-  static final furnitureId =
-      QueryIntegerProperty<Furniture>(_entities[0].properties[0]);
-
-  /// see [Furniture.furnitureName]
-  static final furnitureName =
-      QueryStringProperty<Furniture>(_entities[0].properties[1]);
-}
-
 /// [User] entity fields to define ObjectBox queries.
 class User_ {
   /// see [User.uId]
-  static final uId = QueryIntegerProperty<User>(_entities[1].properties[0]);
+  static final uId = QueryIntegerProperty<User>(_entities[0].properties[0]);
 
   /// see [User.fname]
-  static final fname = QueryStringProperty<User>(_entities[1].properties[1]);
+  static final fname = QueryStringProperty<User>(_entities[0].properties[1]);
 
   /// see [User.lname]
-  static final lname = QueryStringProperty<User>(_entities[1].properties[2]);
+  static final lname = QueryStringProperty<User>(_entities[0].properties[2]);
 
   /// see [User.username]
-  static final username = QueryStringProperty<User>(_entities[1].properties[3]);
+  static final username = QueryStringProperty<User>(_entities[0].properties[3]);
 
   /// see [User.password]
-  static final password = QueryStringProperty<User>(_entities[1].properties[4]);
-
-  /// see [User.furniture]
-  static final furniture =
-      QueryRelationToOne<User, Furniture>(_entities[1].properties[5]);
+  static final password = QueryStringProperty<User>(_entities[0].properties[4]);
 }

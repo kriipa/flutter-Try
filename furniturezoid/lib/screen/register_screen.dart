@@ -41,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _passwordController.text,
     );
 
-  _showMessage(int status) {
+  showMessage(int status) {
     if (status > 0) {
       MotionToast.success(
         description: const Text('User added'),
@@ -53,7 +53,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
     int status = await UserRepositoryImpl().addUser(user);
-    _showMessage(status);
+    showMessage(status);
   }
 
   @override
@@ -63,11 +63,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: SafeArea(
         child: Form(
           child: SingleChildScrollView(
-            child: Container(
-                // decoration: const BoxDecoration(
-                //   image: DecorationImage(image:  AssetImage('assets/images/image1.jpg'),
-                //   ),
-                // ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -268,7 +263,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ],
               ),
-            )),
+            ),
           ),
         ),
       ),
