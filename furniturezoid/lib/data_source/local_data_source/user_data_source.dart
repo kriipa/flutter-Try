@@ -12,7 +12,7 @@ class UserDataSource {
   get objectBoxInstance => null;
   Future<int> addUser(User user) async {
     try {
-      return objectBoxInstance.addUser(user);
+      return objectBoxInstance2.addUser(user);
     } catch (e) {
       return Future.value(0);
     }
@@ -20,7 +20,7 @@ class UserDataSource {
 
   Future<List<User>> getAllUser() async {
     try {
-      return Future.value(objectBoxInstance.getAllUser());
+      return Future.value(objectBoxInstance2.getAllUser());
     } catch (e) {
       throw Exception('Error getting all user');
     }

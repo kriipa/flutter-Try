@@ -29,7 +29,7 @@ class ObjectBoxInstance {
     return _user.put(user);
   }
 
-  List<User> getUser() {
+  List<User> getAllUser() {
     return _user.getAll();
   }
 

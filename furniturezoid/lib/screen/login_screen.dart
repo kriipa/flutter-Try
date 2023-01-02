@@ -8,6 +8,11 @@ class LoginPageScreen extends StatefulWidget {
 }
 
 class _LoginPageScreenState extends State<LoginPageScreen> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _usernameController = TextEditingController(text: 'kripa@gmail.com');
+  final _passwordController = TextEditingController(text: 'kripa123');
+
   final _gap = const SizedBox(
     height: 10,
   );
@@ -38,6 +43,7 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                   height: 8,
                 ),
                 TextFormField(
+                  controller: _usernameController,
                   decoration: const InputDecoration(
                     hintText: 'Username',
                     fillColor: Colors.grey,
@@ -50,11 +56,18 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                       borderSide: BorderSide(color: Color.fromARGB(255, 94, 70, 70)),
                     ),
                   ),
+                  validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter username';
+                        }
+                        return null;
+                      },
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
+                  controller: _passwordController,
                   decoration: const InputDecoration(
                     hintText: 'Password',
         
@@ -67,6 +80,12 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                       borderSide: BorderSide(color: Color.fromARGB(255, 102, 82, 82)),
                     ),
                   ),
+                  validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter password';
+                        }
+                        return null;
+                      },
                 ),
                 const SizedBox(
                   height: 30,
@@ -75,7 +94,11 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                          Navigator.pushNamed(context, '/DashboardScreen');
+                        }
+                    },
                     style: const ButtonStyle(
                         // backgroundColor: Colors.amber,
                         ),
@@ -104,7 +127,6 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                     style: TextStyle(color: Colors.blue)))
                   ],
                 ),
-                
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

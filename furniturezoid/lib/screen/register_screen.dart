@@ -15,251 +15,199 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final _globalKey = GlobalKey<FormState>();
+  final _key = GlobalKey<FormState>();
+  final _fnameController = TextEditingController(text: "shbm");
+  final _lnameController = TextEditingController(text: "shbm");
+  final _emailController = TextEditingController(text: "shbm@gmail.com");
+  final _passwordController = TextEditingController(text: "subham123");
+  String? _radioValue = "true";
 
-  final _fnameController = TextEditingController(text: 'kripa');
-  final _lnameController = TextEditingController(text: 'Thapa');
-  final _usernameController = TextEditingController();
-  // final _emailController = TextEditingController();
-  // final _phonenumController = TextEditingController();
-  // final _addressController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  final gap = const SizedBox(
-    height: 16,
-  );
-
-  
-  _saveUser() async {
+  saveUser() async {
     User user = User(
       _fnameController.text,
       _lnameController.text,
-      _usernameController.text,
-      // _emailController.text,
-      // _phonenumController.text,
-      // _addressController.text,
+      _radioValue!,
+      _emailController.text,
       _passwordController.text,
     );
-
-  showMessage(int status) {
-    if (status > 0) {
-      MotionToast.success(
-        description: const Text('User added'),
-      ).show(context);
-    } else {
-      MotionToast.error(description: const Text('Error in adding user'))
-          .show(context);
-    }
+    int status = await UserRepositoryImpl().addUser(user);
+    _showMessage(status);
   }
 
-    int status = await UserRepositoryImpl().addUser(user);
-    showMessage(status);
+  _showMessage(int status) {
+    if (status > 0) {
+      MotionToast.success(
+        description: const Text("student added successfully"),
+      ).show(context);
+    } else {
+      MotionToast.error(
+        description: const Text("Error adding student"),
+      ).show(context);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color.fromARGB(255, 100, 122, 110),
+      appBar: AppBar(
+        title: const Text('Register'),
+        backgroundColor: const Color(0xff184a2c),
+        centerTitle: true,
+      ),
       body: SafeArea(
-        child: Form(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Form(
+              key: _key,
               child: Column(
                 children: [
                   TextFormField(
                     controller: _fnameController,
-                    decoration: const InputDecoration(
-                      hintText: 'First Name',
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 122, 94, 94)),
-                      ),
-                    ),
-                    // keyboardType: TextInputType.name,
-                    validator: (value) {
+                    decoration: InputDecoration(
+                        labelText: 'First Name',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.circular(5),
+                        )),
+                    validator: ((value) {
                       if (value == null || value.isEmpty) {
-                        return 'Fields cannot be empty';
+                        return 'Please enter first name';
                       }
                       return null;
-                    },
+                    }),
                   ),
-                  gap,
+                  const SizedBox(
+                    height: 8,
+                  ),
                   TextFormField(
                     controller: _lnameController,
-                    decoration: const InputDecoration(
-                      hintText: 'Last Name',
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 122, 94, 94)),
-                      ),
-                    ),
-                    // keyboardType: TextInputType.name,
-                    validator: (value) {
+                    decoration: InputDecoration(
+                        labelText: 'Last Name',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.circular(5),
+                        )),
+                    validator: ((value) {
                       if (value == null || value.isEmpty) {
-                        return 'Fields cannot be empty';
+                        return 'Please enter last name';
                       }
                       return null;
-                    },
+                    }),
                   ),
-                  gap,
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Select Gender: "),
+                  ),
+                  RadioListTile(
+                      title: const Text("Male"),
+                      value: "m",
+                      groupValue: _radioValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _radioValue = value.toString();
+                        });
+                      }),
+                  RadioListTile(
+                      title: const Text("Female"),
+                      value: "f",
+                      groupValue: _radioValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _radioValue = value.toString();
+                        });
+                      }),
                   TextFormField(
-                    controller: _usernameController,
-                    decoration: const InputDecoration(
-                      hintText: 'User Name',
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 122, 94, 94)),
-                      ),
-                    ),
-                    // keyboardType: TextInputType.name,
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                        labelText: 'Email',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.circular(5),
+                        )),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Fields cannot be empty';
+                        return 'Please enter Email';
+                      }
+                      String pattern =
+                          r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                          r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                          r"{0,253}[a-zA-Z0-9])?)*$";
+                      RegExp regex = RegExp(pattern);
+                      // ignore: unnecessary_null_comparison
+                      if (value == null ||
+                          value.isEmpty ||
+                          !regex.hasMatch(value)) {
+                        return 'Enter a valid email address';
                       }
                       return null;
                     },
                   ),
-                  gap,
-                  // TextFormField(
-                  //   controller: _emailController,
-                  //   decoration: const InputDecoration(
-                  //     hintText: 'Email Address',
-                  //     border: OutlineInputBorder(),
-                  //     enabledBorder: OutlineInputBorder(
-                  //       borderSide: BorderSide(
-                  //           width: 1, color: Color.fromARGB(255, 122, 94, 94)),
-                  //     ),
-                  //   ),
-                  //   keyboardType: TextInputType.emailAddress,
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Fields cannot be empty';
-                  //     }
-                  //     String pattern =
-                  //         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-                  //         r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-                  //         r"{0,253}[a-zA-Z0-9])?)*$";
-                  //     RegExp regex = RegExp(pattern);
-                  //     if (value.isEmpty ||
-                  //         !regex.hasMatch(value)) {
-                  //       return 'Enter a valid email address';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
-                  gap,
-                  // TextFormField(
-                  //   controller: _phonenumController,
-                  //   decoration: const InputDecoration(
-                  //     hintText: 'Phone number',
-                  //     border: OutlineInputBorder(),
-                  //     enabledBorder: OutlineInputBorder(
-                  //       borderSide: BorderSide(
-                  //           width: 1, color: Color.fromARGB(255, 122, 94, 94)),
-                  //     ),
-                  //   ),
-                  //   keyboardType: TextInputType.number,
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Fields cannot be empty';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
-
-                  gap,
-                  // TextFormField(
-                  //   controller: _addressController,
-                  //   decoration: const InputDecoration(
-                  //     hintText: 'Address',
-                  //     border: OutlineInputBorder(),
-                  //     enabledBorder: OutlineInputBorder(
-                  //       borderSide: BorderSide(
-                  //           width: 1, color: Color.fromARGB(255, 122, 94, 94)),
-                  //     ),
-                  //   ),
-                  //   keyboardType: TextInputType.text,
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Fields cannot be empty';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
-                  gap,
+                  const SizedBox(
+                    height: 8,
+                  ),
                   TextFormField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(
-                      hintText: 'Password',
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 122, 94, 94)),
-                      ),
-                    ),
-                    keyboardType: TextInputType.visiblePassword,
+                    decoration: InputDecoration(
+                        labelText: 'Password',
+                        hintText: 'Enter Password',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.circular(5),
+                        )),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Fields cannot be empty';
+                        return 'Please enter Password';
                       }
+                      if (value.length < 6) {
+                        return 'Password length must be at least 6 characters';
+                      }
+
                       return null;
                     },
                   ),
-                  gap,
-                  //buttons
+                  const SizedBox(
+                    height: 8,
+                  ),
                   SizedBox(
+                    height: 40,
                     width: double.infinity,
-                    height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_globalKey.currentState!.validate()) {
-                          _saveUser();
-                          setState(() {
-                            Navigator.pushNamed(context, '/LoginPageScreen');
-                          });
+                        if (_key.currentState!.validate()) {
+                          saveUser();
                         }
                       },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: "Brand Bold",
+                        ),
                       ),
-                      child: const Text('Register'),
                     ),
-                  ),
-                  gap,
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("Already have an account?"),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/LoginPageScreen');
-                          },
-                          child: const Text('Sign in',
-                              style: TextStyle(color: Colors.blue)))
-                    ],
-                  ),
-
-                  gap,
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.facebook,
-                            color: Color.fromARGB(255, 0, 0, 0), size: 30),
-                      ),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.mail,
-                              color: Color.fromARGB(255, 0, 0, 0), size: 30)),
-                    ],
                   ),
                 ],
               ),

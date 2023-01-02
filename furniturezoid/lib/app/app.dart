@@ -1,14 +1,17 @@
-
 import 'package:furniturezoid/app/theme.dart';
+
 import 'package:furniturezoid/screen/dashboard.dart';
+
 import 'package:flutter/material.dart';
 
 import '../screen/register_screen.dart';
+
 import '../screen/login_screen.dart';
+
 // import '../screen/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required bool debugShowCheckedModeBanner});
 
   @override
   Widget build(BuildContext context) {

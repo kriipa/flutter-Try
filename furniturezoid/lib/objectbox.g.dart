@@ -9,7 +9,6 @@
 
 import 'dart:typed_data';
 
-// ignore: depend_on_referenced_packages
 import 'package:flat_buffers/flat_buffers.dart' as fb;
 import 'package:objectbox/internal.dart'; // generated code can access "internal" functionality
 import 'package:objectbox/objectbox.dart';
@@ -23,7 +22,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(1, 8760265302201636791),
       name: 'User',
-      lastPropertyId: const IdUid(5, 3687001264436156113),
+      lastPropertyId: const IdUid(6, 408609883521664144),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -49,6 +48,11 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(5, 3687001264436156113),
             name: 'password',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 408609883521664144),
+            name: 'gender',
             type: 9,
             flags: 0)
       ],
@@ -102,12 +106,14 @@ ModelDefinition getObjectBoxModel() {
           final lnameOffset = fbb.writeString(object.lname);
           final usernameOffset = fbb.writeString(object.username);
           final passwordOffset = fbb.writeString(object.password);
-          fbb.startTable(6);
+          final genderOffset = fbb.writeString(object.gender);
+          fbb.startTable(7);
           fbb.addInt64(0, object.uId);
           fbb.addOffset(1, fnameOffset);
           fbb.addOffset(2, lnameOffset);
           fbb.addOffset(3, usernameOffset);
           fbb.addOffset(4, passwordOffset);
+          fbb.addOffset(5, genderOffset);
           fbb.finish(fbb.endTable());
           return object.uId;
         },
@@ -120,6 +126,8 @@ ModelDefinition getObjectBoxModel() {
                   .vTableGet(buffer, rootOffset, 6, ''),
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 8, ''),
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 14, ''),
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 10, ''),
               const fb.StringReader(asciiOptimization: true)
@@ -149,4 +157,7 @@ class User_ {
 
   /// see [User.password]
   static final password = QueryStringProperty<User>(_entities[0].properties[4]);
+
+  /// see [User.gender]
+  static final gender = QueryStringProperty<User>(_entities[0].properties[5]);
 }
