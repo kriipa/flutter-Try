@@ -16,11 +16,11 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
   final _emailController = TextEditingController(text: "shbm@gmail.com");
   final _passwordController = TextEditingController(text: "Shubham123");
 
-  loginUser() async {
+  Future<int> loginUser() async {
     User? status = await UserRepositoryImpl()
         .loginUser(_emailController.text, _passwordController.text);
-    _showMessage(status != null ? status.uId : 0);
-    if (status!.uId != null) Navigator.pushNamed(context, '/DashboardScreen');
+    // _showMessage(status != null ? status.uId : 0);
+    return status != null ? status.uId : 0;
   }
 
   _showMessage(int status) {
@@ -122,7 +122,15 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          loginUser();
+                          loginUser().then((value) {
+                            print(value);
+                            value > 0
+                                ? Navigator.pushNamedAndRemoveUntil(
+                                    context,
+                                    '/DashboardScreen',
+                                    (Route<dynamic> route) => false)
+                                : _showMessage(value);
+                          });
                         }
                       },
                       style: const ButtonStyle(
