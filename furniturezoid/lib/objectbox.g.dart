@@ -9,6 +9,7 @@
 
 import 'dart:typed_data';
 
+// ignore: depend_on_referenced_packages
 import 'package:flat_buffers/flat_buffers.dart' as fb;
 import 'package:objectbox/internal.dart'; // generated code can access "internal" functionality
 import 'package:objectbox/objectbox.dart';
@@ -22,7 +23,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(1, 8760265302201636791),
       name: 'User',
-      lastPropertyId: const IdUid(6, 408609883521664144),
+      lastPropertyId: const IdUid(7, 4793808645248535227),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -41,11 +42,6 @@ final _entities = <ModelEntity>[
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 5115192566207058230),
-            name: 'username',
-            type: 9,
-            flags: 0),
-        ModelProperty(
             id: const IdUid(5, 3687001264436156113),
             name: 'password',
             type: 9,
@@ -53,6 +49,11 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(6, 408609883521664144),
             name: 'gender',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 4793808645248535227),
+            name: 'email',
             type: 9,
             flags: 0)
       ],
@@ -86,7 +87,7 @@ ModelDefinition getObjectBoxModel() {
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [5115192566207058230],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -104,16 +105,16 @@ ModelDefinition getObjectBoxModel() {
         objectToFB: (User object, fb.Builder fbb) {
           final fnameOffset = fbb.writeString(object.fname);
           final lnameOffset = fbb.writeString(object.lname);
-          final usernameOffset = fbb.writeString(object.username);
           final passwordOffset = fbb.writeString(object.password);
           final genderOffset = fbb.writeString(object.gender);
-          fbb.startTable(7);
+          final emailOffset = fbb.writeString(object.email);
+          fbb.startTable(8);
           fbb.addInt64(0, object.uId);
           fbb.addOffset(1, fnameOffset);
           fbb.addOffset(2, lnameOffset);
-          fbb.addOffset(3, usernameOffset);
           fbb.addOffset(4, passwordOffset);
           fbb.addOffset(5, genderOffset);
+          fbb.addOffset(6, emailOffset);
           fbb.finish(fbb.endTable());
           return object.uId;
         },
@@ -127,9 +128,9 @@ ModelDefinition getObjectBoxModel() {
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 8, ''),
               const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 14, ''),
+                  .vTableGet(buffer, rootOffset, 16, ''),
               const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 10, ''),
+                  .vTableGet(buffer, rootOffset, 14, ''),
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 12, ''),
               uId: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
@@ -152,12 +153,12 @@ class User_ {
   /// see [User.lname]
   static final lname = QueryStringProperty<User>(_entities[0].properties[2]);
 
-  /// see [User.username]
-  static final username = QueryStringProperty<User>(_entities[0].properties[3]);
-
   /// see [User.password]
-  static final password = QueryStringProperty<User>(_entities[0].properties[4]);
+  static final password = QueryStringProperty<User>(_entities[0].properties[3]);
 
   /// see [User.gender]
-  static final gender = QueryStringProperty<User>(_entities[0].properties[5]);
+  static final gender = QueryStringProperty<User>(_entities[0].properties[4]);
+
+  /// see [User.email]
+  static final email = QueryStringProperty<User>(_entities[0].properties[5]);
 }

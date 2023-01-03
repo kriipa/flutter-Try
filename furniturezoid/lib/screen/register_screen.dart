@@ -6,7 +6,6 @@ import 'package:motion_toast/motion_toast.dart';
 
 import '../repository/user_repo.dart';
 
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -26,8 +25,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     User user = User(
       _fnameController.text,
       _lnameController.text,
-      _radioValue!,
       _emailController.text,
+      _radioValue!,
       _passwordController.text,
     );
     int status = await UserRepositoryImpl().addUser(user);

@@ -9,7 +9,7 @@ class User {
   int uId;
   String fname;
   String lname;
-  String username;
+  String email;
   String gender;
   // String phonenum;
   // String email;
@@ -18,6 +18,6 @@ class User {
 
   // final furniture = ToOne<Furniture>();
 
-  User(this.fname, this.lname,this.gender, this.username, this.password, {this.uId = 0});
+  User(this.fname, this.lname, this.email, this.gender, this.password,
+      {this.uId = 0});
 }
-

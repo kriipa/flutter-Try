@@ -11,17 +11,13 @@ class ObjectBoxInstance {
   ObjectBoxInstance(this._store) {
     _user = Box<User>(_store);
   }
-
   // initialization of ObjectBox
-
   static Future<ObjectBoxInstance> init() async {
     var dir = await getApplicationDocumentsDirectory();
-
     final store = Store(
       getObjectBoxModel(),
       directory: '${dir.path}/user_choices',
     );
-
     return ObjectBoxInstance(store);
   }
 
@@ -33,9 +29,9 @@ class ObjectBoxInstance {
     return _user.getAll();
   }
 
-  User? loginUser(String username, String password) {
+  User? loginUser(String email, String password) {
     return _user
-        .query(User_.username.equals(username) & User_.password.equals(password))
+        .query(User_.email.equals(email) & User_.password.equals(password))
         .build()
         .findFirst();
   }
